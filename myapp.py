@@ -3,7 +3,7 @@ import json
 
 URL = "http://127.0.0.1:8000/student/"
 
-
+# read operation
 def get_data(id=None):
     data = {}
     if id is not None:
@@ -15,4 +15,19 @@ def get_data(id=None):
     print(data)
 
 
-get_data(3)
+# get_data(3)
+
+#post data
+def post_data():
+    data = {
+        'name':12
+    }
+    json_data = json.dumps(data)
+    r = requests.post(url=URL, data=json_data)
+    data = r.json()
+    print(data)
+    
+post_data()
+    
+
+

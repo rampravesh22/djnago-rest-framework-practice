@@ -25,3 +25,12 @@ def student_api(request):
         stu = Student.objects.all()
         serializer = StudentSerializer(stu, many=True)
         return JsonResponse(serializer.data, safe=False)
+    if request.method == "POST":
+        json_data = request.body
+        stream = io.BytesIO(json_data)
+        pythondata = JSONParser().parse(stream)
+        serializer = StudentSerializer(data=pythondata)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse({"yes":"The data is savee to database"})
+        return JsonResponse(serializer.errors)
