@@ -17,9 +17,11 @@ def student_api(request):
         print(pythondata)
         print(id)
         if id is not None:
-            stu = Student.objects.get(id=id)
+            print("id is not none",id)
+            stu = Student.objects.get(pk=id)
             serializer = StudentSerializer(stu)
-            json_data = JsonResponse(serializer.data, safe=False)
+            return JsonResponse(serializer.data)
+            
         stu = Student.objects.all()
         serializer = StudentSerializer(stu, many=True)
         return JsonResponse(serializer.data, safe=False)

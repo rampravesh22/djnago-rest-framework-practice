@@ -15,4 +15,4 @@ def get_data(id=None):
     print(data)
 
 
-get_data(id=1)
+get_data(3)
